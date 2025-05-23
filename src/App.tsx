@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Projects from './pages/Projects'
 import Blog from './pages/Blog'
 import Now from './pages/Now'
-import TreeAnimation from './components/TreeAnimation'
+import RocketAnimation from './components/RocketAnimation'
 
 function App() {
   return (
@@ -51,8 +51,8 @@ function App() {
 function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
-      {/* Tree Animation */}
-      <TreeAnimation />
+      {/* Rocket Animation */}
+      <RocketAnimation />
 
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -82,6 +82,28 @@ function Home() {
           }}
           style={{ bottom: '20%', right: '10%' }}
         />
+        {/* New floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white/30 rounded-full"
+            animate={{
+              y: [0, -1000],
+              x: [0, Math.random() * 200 - 100],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "linear"
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: '100%',
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-2xl text-center relative z-10">
@@ -105,8 +127,46 @@ function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
+            whileHover={{ scale: 1.02 }}
           >
-            const curious = true;
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-purple-400"
+            >
+              const
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-blue-400"
+            >
+              curious
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              =
+            </motion.span>{" "}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="text-green-400"
+            >
+              true
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+            >
+              ;
+            </motion.span>
           </motion.div>
           
           <motion.p 
@@ -117,35 +177,34 @@ function Home() {
           >
             Computer Science student at the University of Alberta — building modern, human-centered software with curiosity and intent.
           </motion.p>
-        </motion.div>
 
-        <motion.div
-          className="flex gap-6 justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-        >
+          {/* Animated social links */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex justify-center space-x-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
           >
-            <Link
-              to="/blog"
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:opacity-90 transition-opacity"
+            <motion.a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl hover:text-purple-400 transition-colors"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
             >
-              Read Blog
-            </Link>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link
-              to="/projects"
-              className="px-6 py-3 rounded-lg border border-purple-500 text-purple-400 font-medium hover:bg-purple-500/10 transition-colors"
+              <span role="img" aria-label="GitHub">👨‍💻</span>
+            </motion.a>
+            <motion.a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl hover:text-purple-400 transition-colors"
+              whileHover={{ scale: 1.2, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
-              View Projects
-            </Link>
+              <span role="img" aria-label="LinkedIn">🔗</span>
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>
